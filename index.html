@@ -1,77 +1,238 @@
+<!-- index.html -->
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ArcaneBet — Exklusive Sportswetten</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <title>VantaWager — Fictional Sports Market (Demo)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Optional: system fonts are fine; this keeps it polished if online -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
   <header class="topbar">
-    <div class="brand">
-      <div class="logo">⛧</div>
-      <div class="title">ArcaneBet <span class="vip">VIP</span></div>
+    <div class="topbar__left">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">
+          <div class="mark__dot"></div>
+          <div class="mark__ring"></div>
+        </div>
+        <div class="brand__text">
+          <div class="brand__name">VantaWager</div>
+          <div class="brand__tag">Fictional Sports Market • UI Demo</div>
+        </div>
+      </div>
+
+      <nav class="tabs" role="navigation" aria-label="Primary">
+        <button class="tab is-active" data-view="markets">Markets</button>
+        <button class="tab" data-view="live">Live</button>
+        <button class="tab" data-view="history">History</button>
+      </nav>
     </div>
-    <nav class="nav">
-      <button class="nav-btn active" data-filter="all">Alle</button>
-      <button class="nav-btn" data-filter="football">Fußball</button>
-      <button class="nav-btn" data-filter="basketball">Basketball</button>
-      <button class="nav-btn" data-filter="tennis">Tennis</button>
-    </nav>
-    <div class="account">
-      <div class="balance">Kontostand<br><strong id="balance">€1,250</strong></div>
-      <div class="clock">Sim-Zeit<br><strong id="simClock">00:00:00</strong></div>
+
+    <div class="topbar__right">
+      <div class="pill">
+        <div class="pill__label">Virtual Time</div>
+        <div class="pill__value" id="virtualTime">—</div>
+      </div>
+
+      <div class="time-controls">
+        <button class="icon-btn" id="btnPlayPause" aria-label="Play/Pause">
+          <span class="icon" id="playIcon">▶</span>
+        </button>
+        <button class="icon-btn" id="btnJump" aria-label="Jump +15 minutes">+15m</button>
+
+        <div class="speed">
+          <span class="speed__label">Speed</span>
+          <div class="segmented" role="group" aria-label="Speed">
+            <button class="seg is-active" data-speed="1">1×</button>
+            <button class="seg" data-speed="5">5×</button>
+            <button class="seg" data-speed="20">20×</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="balance">
+        <div class="balance__label">Demo Balance</div>
+        <div class="balance__value" id="balance">€ 1,000.00</div>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <section class="left-pane">
-      <div class="ticker">Live-Ticker — exklusive Matches &nbsp;•&nbsp; VIP-Quoten</div>
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel__head">
+          <div class="panel__title">Sports</div>
+          <div class="panel__hint">Select a category</div>
+        </div>
 
-      <div id="matches" class="matches-grid"></div>
+        <div class="sports" role="list">
+          <button class="sport is-active" data-sport="all" role="listitem">
+            <span class="sport__dot"></span><span class="sport__name">All</span>
+            <span class="sport__count" id="countAll">—</span>
+          </button>
+          <button class="sport" data-sport="football" role="listitem">
+            <span class="sport__dot"></span><span class="sport__name">Football</span>
+            <span class="sport__count" id="countFootball">—</span>
+          </button>
+          <button class="sport" data-sport="basketball" role="listitem">
+            <span class="sport__dot"></span><span class="sport__name">Basketball</span>
+            <span class="sport__count" id="countBasketball">—</span>
+          </button>
+          <button class="sport" data-sport="tennis" role="listitem">
+            <span class="sport__dot"></span><span class="sport__name">Tennis</span>
+            <span class="sport__count" id="countTennis">—</span>
+          </button>
+          <button class="sport" data-sport="esports" role="listitem">
+            <span class="sport__dot"></span><span class="sport__name">Esports</span>
+            <span class="sport__count" id="countEsports">—</span>
+          </button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="filters">
+          <div class="field">
+            <label class="label" for="q">Search</label>
+            <input id="q" class="input" placeholder="Teams, league, event..." autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="status">Status</label>
+            <select id="status" class="input">
+              <option value="all">All</option>
+              <option value="upcoming">Upcoming</option>
+              <option value="live">Live</option>
+              <option value="finished">Finished</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" for="sort">Sort</label>
+            <select id="sort" class="input">
+              <option value="startAsc">Start time (soonest)</option>
+              <option value="volDesc">Popularity</option>
+              <option value="moverDesc">Biggest mover</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="note">
+          <div class="note__title">Disclaimer</div>
+          <div class="note__text">
+            This is a fictional, offline simulation for UI/UX demo purposes only. No real betting, payments, or live odds.
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="content__head">
+        <div>
+          <div class="h1" id="viewTitle">Markets</div>
+          <div class="sub" id="viewSubtitle">Curated events with simulated market movement.</div>
+        </div>
+
+        <div class="ticker">
+          <div class="ticker__label">Market Pulse</div>
+          <div class="ticker__text" id="pulse">Initializing…</div>
+        </div>
+      </div>
+
+      <div class="view is-active" id="view-markets">
+        <div class="grid" id="eventsGrid" aria-live="polite"></div>
+        <div class="empty" id="emptyState">
+          <div class="empty__title">No events match your filters</div>
+          <div class="empty__text">Try switching sport, clearing search, or changing status.</div>
+        </div>
+      </div>
+
+      <div class="view" id="view-live">
+        <div class="live-wrap">
+          <div class="panel">
+            <div class="panel__head">
+              <div class="panel__title">Live Console</div>
+              <div class="panel__hint">Auto-updates with virtual time</div>
+            </div>
+            <div class="live-list" id="liveList"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel__head">
+              <div class="panel__title">Movement Feed</div>
+              <div class="panel__hint">Largest odds swings</div>
+            </div>
+            <div class="feed" id="moveFeed"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view" id="view-history">
+        <div class="panel">
+          <div class="panel__head">
+            <div class="panel__title">Bet History</div>
+            <div class="panel__hint">Simulated placements & outcomes</div>
+          </div>
+          <div class="history" id="history"></div>
+        </div>
+      </div>
     </section>
 
-    <aside class="right-pane">
-      <div class="card bet-slip">
-        <h3>Wettschein</h3>
-        <div id="betsList" class="bets-list">Keine Wetten ausgewählt.</div>
-        <div class="bet-controls">
-          <label>Stake (€): <input id="stake" type="number" min="1" value="10"></label>
-          <div class="returns">Erwartete Auszahlung: <strong id="expected">€0.00</strong></div>
-          <button id="placeBet" class="cta">Setze jetzt</button>
+    <aside class="betslip">
+      <div class="panel bet-panel">
+        <div class="panel__head">
+          <div class="panel__title">Bet Slip</div>
+          <div class="panel__hint" id="slipHint">Select odds to add picks</div>
         </div>
-      </div>
 
-      <div class="card simulation">
-        <h4>Simulation</h4>
-        <div class="sim-row">
-          <button id="simPlay" class="small">Start</button>
-          <button id="simPause" class="small">Pause</button>
-        </div>
-        <label>Geschwindigkeit: <input id="speed" type="range" min="0.25" max="4" step="0.25" value="1"></label>
-        <div class="leaders">
-          <h5>Leaderboard</h5>
-          <ol id="leadersList">
-            <li>EliteTiger — €12,430</li>
-            <li>GoldFox — €7,900</li>
-            <li>You — €1,250</li>
-          </ol>
-        </div>
-      </div>
+        <div class="slip" id="slip"></div>
 
-      <div class="card info">
-        <h5>Tipps</h5>
-        <ul>
-          <li>Exklusive Quoten für VIP-Matches</li>
-          <li>Schnelle Live-Settlements</li>
-          <li>Verwalte deine Einsätze & Limits</li>
-        </ul>
+        <div class="slip-footer">
+          <div class="row">
+            <div class="muted">Stake</div>
+            <div class="stake">
+              <span class="muted">€</span>
+              <input class="stake__input" id="stake" type="number" min="1" step="1" value="10" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="muted">Total Odds</div>
+            <div class="mono" id="totalOdds">—</div>
+          </div>
+
+          <div class="row">
+            <div class="muted">Potential Return</div>
+            <div class="mono" id="potential">—</div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-ghost" id="btnClear">Clear</button>
+            <button class="btn btn-primary" id="btnPlace">Place Demo Bet</button>
+          </div>
+
+          <div class="micro">
+            <span class="dot"></span>
+            <span>“Place” triggers a simulated ticket. Outcomes resolve when events finish in virtual time.</span>
+          </div>
+        </div>
       </div>
     </aside>
   </main>
 
-  <footer class="footer">&copy; ArcaneBet — Für demonstrative Zwecke. Kein echtes Glücksspiel.</footer>
+  <footer class="footer">
+    <div class="footer__left">© <span id="year"></span> VantaWager (Fictional)</div>
+    <div class="footer__right">
+      <span class="kbd">Space</span> Play/Pause
+      <span class="sep"></span>
+      <span class="kbd">F</span> +15m
+    </div>
+  </footer>
 
   <script src="app.js"></script>
 </body>
