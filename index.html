@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ArcaneBet — Exklusive Sportswetten</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">⛧</div>
+      <div class="title">ArcaneBet <span class="vip">VIP</span></div>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn active" data-filter="all">Alle</button>
+      <button class="nav-btn" data-filter="football">Fußball</button>
+      <button class="nav-btn" data-filter="basketball">Basketball</button>
+      <button class="nav-btn" data-filter="tennis">Tennis</button>
+    </nav>
+    <div class="account">
+      <div class="balance">Kontostand<br><strong id="balance">€1,250</strong></div>
+      <div class="clock">Sim-Zeit<br><strong id="simClock">00:00:00</strong></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left-pane">
+      <div class="ticker">Live-Ticker — exklusive Matches &nbsp;•&nbsp; VIP-Quoten</div>
+
+      <div id="matches" class="matches-grid"></div>
+    </section>
+
+    <aside class="right-pane">
+      <div class="card bet-slip">
+        <h3>Wettschein</h3>
+        <div id="betsList" class="bets-list">Keine Wetten ausgewählt.</div>
+        <div class="bet-controls">
+          <label>Stake (€): <input id="stake" type="number" min="1" value="10"></label>
+          <div class="returns">Erwartete Auszahlung: <strong id="expected">€0.00</strong></div>
+          <button id="placeBet" class="cta">Setze jetzt</button>
+        </div>
+      </div>
+
+      <div class="card simulation">
+        <h4>Simulation</h4>
+        <div class="sim-row">
+          <button id="simPlay" class="small">Start</button>
+          <button id="simPause" class="small">Pause</button>
+        </div>
+        <label>Geschwindigkeit: <input id="speed" type="range" min="0.25" max="4" step="0.25" value="1"></label>
+        <div class="leaders">
+          <h5>Leaderboard</h5>
+          <ol id="leadersList">
+            <li>EliteTiger — €12,430</li>
+            <li>GoldFox — €7,900</li>
+            <li>You — €1,250</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="card info">
+        <h5>Tipps</h5>
+        <ul>
+          <li>Exklusive Quoten für VIP-Matches</li>
+          <li>Schnelle Live-Settlements</li>
+          <li>Verwalte deine Einsätze & Limits</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">&copy; ArcaneBet — Für demonstrative Zwecke. Kein echtes Glücksspiel.</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

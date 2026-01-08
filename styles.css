@@ -1,0 +1,51 @@
+:root{
+  --bg:#0b0f14;
+  --card:#0f1720AA;
+  --accent:#d4af37; /* gold */
+  --muted:#9aa6b2;
+  --glass: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.02);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#061021 0%, #071524 60%);}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{font-size:26px;color:var(--accent);transform:rotate(12deg)}
+.title{font-weight:700;font-size:18px;letter-spacing:0.6px}
+.vip{background:linear-gradient(90deg,#fde68a,#f9a8d4);color:#111;padding:3px 8px;border-radius:12px;font-weight:700;font-size:12px;margin-left:8px}
+.nav{display:flex;gap:10px}
+.nav-btn{background:transparent;color:var(--muted);border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+.nav-btn.active{color:#fff;background:linear-gradient(90deg, rgba(212,175,55,0.12), rgba(212,175,55,0.06));box-shadow:0 6px 24px rgba(212,175,55,0.06)}
+.account{display:flex;gap:18px;align-items:center;color:var(--muted);font-size:13px}
+.container{display:flex;gap:24px;padding:22px}
+.left-pane{flex:1}
+.right-pane{width:340px;display:flex;flex-direction:column;gap:16px}
+.ticker{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:10px;border-radius:10px;color:var(--muted);margin-bottom:14px}
+.matches-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.match{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);position:relative;overflow:hidden}
+.match .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.match .teams{display:flex;flex-direction:column;gap:6px}
+.match .teams strong{font-weight:700}
+.odds{display:flex;gap:8px;margin-top:10px}
+.odd{flex:1;background:var(--glass);padding:8px;border-radius:8px;text-align:center;cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+.odd:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.badge{position:absolute;top:12px;right:12px;background:rgba(212,175,55,0.12);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.bet-slip h3{margin:0 0 8px 0}
+.bets-list{min-height:80px;max-height:200px;overflow:auto;color:var(--muted)}
+.bet-controls{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.bet-controls input{width:100px;padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
+.cta{background:linear-gradient(90deg, var(--accent), #e6b84a);border:0;padding:10px;border-radius:8px;color:#081018;font-weight:700;cursor:pointer}
+.small{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:6px 8px;border-radius:6px;cursor:pointer;color:var(--muted)}
+.simulation label{display:block;margin-top:8px;color:var(--muted)}
+.leaders ol{padding-left:18px;margin:8px 0 0 0;color:var(--muted)}
+.footer{text-align:center;padding:16px;color:var(--muted);font-size:13px}
+
+@media (max-width:980px){
+  .matches-grid{grid-template-columns:repeat(1,1fr)}
+  .right-pane{width:300px}
+}
+@media (max-width:740px){
+  .container{flex-direction:column}
+  .right-pane{width:100%}
+}
